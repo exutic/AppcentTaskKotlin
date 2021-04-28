@@ -1,4 +1,4 @@
-package com.example.appcenttaskkotlin.view
+package com.example.appcenttaskkotlin.appcentView
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

@@ -1,4 +1,4 @@
-package com.example.appcenttaskkotlin.view
+package com.example.appcenttaskkotlin.appcentView
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.appcenttaskkotlin.R
 import com.example.recyclerviewkotlin.adapters.AppcentAdapter
-import com.example.appcenttaskkotlin.model.AppcentItem
+import com.example.appcenttaskkotlin.appcentModel.AppcentItem
 import kotlin.random.Random
 
 class MainActivity :
@@ -23,7 +23,7 @@ class MainActivity :
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        recyclerView = findViewById(R.id.recycler_view)
+        recyclerView = findViewById(R.id.rcl_main_1)
 
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
@@ -43,28 +43,6 @@ class MainActivity :
             list += item
         }
         return list
-    }
-
-    fun addItem(view: View) {
-        val index = Random.nextInt(6)
-
-        val newItem = AppcentItem(
-            R.drawable.ic_launcher_foreground,
-            "Lebron James at $index Position",
-            "NBA Player",
-            "2021"
-        )
-
-        exampleList.add(index, newItem)
-
-        adapter.notifyItemInserted(index)
-    }
-
-    fun deleteItem(view: View) {
-        val index: Int = Random.nextInt(6)
-
-        adapter.notifyItemRemoved(index)
-        Thread.sleep(500)
     }
 
     override fun onItemClick(position: Int) {

@@ -7,7 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.appcenttaskkotlin.R
-import com.example.appcenttaskkotlin.model.AppcentItem
+import com.example.appcenttaskkotlin.appcentModel.AppcentItem
 
 class AppcentAdapter(
     private val appcentList: List<AppcentItem>,

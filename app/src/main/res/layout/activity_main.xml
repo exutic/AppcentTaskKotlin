@@ -4,42 +4,129 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.MainActivity">
+    tools:context=".appcentView.MainActivity">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view"
+    <TextView
+        android:id="@+id/tv_title"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:clipToPadding="true"
-        app:layout_constraintBottom_toTopOf="@+id/ll_buttons"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:gravity="center"
+        android:text="@string/page_title"
+        android:textSize="30dp"
+        android:textStyle="bold"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:listitem="@layout/appcent_items" />
+        app:layout_constraintTop_toTopOf="parent" />
+
 
     <LinearLayout
-        android:id="@+id/ll_buttons"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
+        android:id="@+id/ll_search_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_weight="1"
         android:orientation="horizontal"
-        android:weightSum="2"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="@+id/recycler_view"
-        app:layout_constraintRight_toRightOf="@+id/recycler_view">
+        android:weightSum="10"
+        app:layout_constraintTop_toBottomOf="@+id/tv_title">
 
-        <Button
+        <ImageView
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:onClick="addItem"
-            android:text="Insert Item" />
+            android:src="@drawable/icon_search"
+            app:layout_constraintBottom_toBottomOf="@+id/edt_search"
+            app:layout_constraintRight_toLeftOf="@+id/edt_search"
+            app:layout_constraintTop_toTopOf="@+id/edt_search" />
 
-        <Button
+        <EditText
+            android:id="@+id/edt_search"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="8"
+            android:background="#DAD5D5"
+            android:ems="1"
+            android:gravity="center"
+            android:hint="Search ..."
+            android:imeOptions="actionDone"
+            android:singleLine="true"
+            android:textAllCaps="false"
+            android:textColor="@android:color/black"
+            android:textColorHint="@android:color/black"
+            android:textSize="20sp"
+            app:layout_constraintLeft_toLeftOf="@+id/tv_title"
+            app:layout_constraintRight_toRightOf="@+id/tv_title"
+            app:layout_constraintTop_toBottomOf="@+id/tv_title" />
+
+
+        <ImageView
+            android:id="@+id/img_clear_text"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:onClick="deleteItem"
-            android:text="Remove Item" />
+            android:src="@drawable/icon_close"
+            app:layout_constraintBottom_toBottomOf="@+id/edt_search"
+            app:layout_constraintLeft_toRightOf="@+id/edt_search"
+            app:layout_constraintTop_toTopOf="@+id/edt_search" />
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#AEABAB"
+        app:layout_constraintBottom_toTopOf="@+id/ll_footer_container"
+        app:layout_constraintLeft_toLeftOf="@+id/ll_search_container"
+        app:layout_constraintRight_toRightOf="@+id/ll_search_container"
+        app:layout_constraintTop_toBottomOf="@+id/ll_search_container"
+        tools:layout_editor_absoluteX="25dp">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rcl_main_1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_footer_container"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:background="@android:color/black"
+        android:padding="1dp"
+        android:weightSum="2"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="News"
+            android:textAllCaps="false"
+            app:cornerRadius="0dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Favorites"
+            android:textAllCaps="false"
+            app:cornerRadius="0dp" />
+
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone" />
+    </FrameLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

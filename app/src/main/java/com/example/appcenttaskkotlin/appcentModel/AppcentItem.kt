@@ -1,4 +1,4 @@
-package com.example.appcenttaskkotlin.model
+package com.example.appcenttaskkotlin.appcentModel
 
 data class AppcentItem(
     var imageResource: Int?,
