@@ -4,6 +4,10 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.widget.EditText
+import android.widget.ImageView
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -30,6 +34,21 @@ class MainActivity :
         articlesFullList = ArrayList<Post2Articles>()
         recyclerView = findViewById(R.id.rcl_main_1)
         getData()
+
+
+        val edtSearch: EditText = findViewById(R.id.edt_search)
+        val imgRemoveText: ImageView = findViewById(R.id.img_clear_text)
+        imgRemoveText.setOnClickListener(View.OnClickListener { edtSearch.text.clear() })
+
+
+        val imgSearch: ImageView = findViewById(R.id.img_search)
+        imgSearch.setOnClickListener(View.OnClickListener {
+            Toast.makeText(
+                this,
+                "Search Under Developed",
+                Toast.LENGTH_SHORT
+            ).show()
+        })
 
     }
 
@@ -65,7 +84,7 @@ class MainActivity :
                 Log.d("onCreate: Response", response1.body()?.status.toString())
                 Log.d("onCreate: Response", response1.body()?.totalResults.toString())
                 articlesFullList = response1.body()?.articles!!
-                SetRecycler()
+                setRecycler()
                 Log.d("onCreate: Response", "Author: ${articlesFullList[0].author}")
                 Log.d("onCreate: Response", "Description: ${articlesFullList[0].description}")
                 Log.d("onCreate: Response", "PublishedAt: ${articlesFullList[0].publishedAt}")
@@ -81,7 +100,7 @@ class MainActivity :
 
     }
 
-    private fun SetRecycler() {
+    private fun setRecycler() {
         adapter = AppcentAdapter(articlesFullList, this, this)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
