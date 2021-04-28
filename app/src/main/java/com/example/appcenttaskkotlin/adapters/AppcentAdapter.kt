@@ -1,17 +1,20 @@
-package com.example.recyclerviewkotlin.adapters
+package com.example.appcenttaskkotlin.adapters
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.appcenttaskkotlin.R
-import com.example.appcenttaskkotlin.appcentModel.AppcentItem
+import com.example.appcenttaskkotlin.appcentModel.Post2Articles
 
 class AppcentAdapter(
-    private val appcentList: List<AppcentItem>,
-    private val listener: OnItemClickListener
+    private val appcentList: ArrayList<Post2Articles>,
+    private val listener: OnItemClickListener,
+    private val mContext: Context
 ) : RecyclerView.Adapter<AppcentAdapter.ExampleViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExampleViewHolder {
@@ -25,10 +28,23 @@ class AppcentAdapter(
     override fun onBindViewHolder(holder: ExampleViewHolder, position: Int) {
         val currentItem = appcentList[position]
 
-        holder.imageView.setImageResource(R.drawable.android)
+
+//        holder.tvDesc.text = currentItem.description
+        //Instead of description I changed it to show source to user because the
+        //description was too much and was ugly in result
+
         holder.tvTitle.text = currentItem.title
-        holder.tvDesc.text = currentItem.description
-        holder.tvDate.text = currentItem.date
+        holder.tvDesc.text = currentItem.source.name
+        holder.tvDate.text = currentItem.publishedAt
+
+        val media = appcentList[position].urlToImage
+        if (media != null) {
+            Glide.with(mContext)
+                .load(media)
+                .into(holder.imageView)
+        } else {
+            holder.imageView.setImageResource(R.drawable.android)
+        }
     }
 
     override fun getItemCount() = appcentList.size
